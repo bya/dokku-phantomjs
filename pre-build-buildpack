@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+APP="$1"; IMAGE="dokku/$APP"
+echo "-----> Installing phantomjs ..."
+COMMAND=$(cat <<EOF
+
+apt-get -y update
+apt-get -y install build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
+wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
+mv phantomjs-2.1.1-linux-x86_64 /usr/local/share/phantomjs-2.1.1-linux-x86_64
+ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64 /usr/local/share/phantomjs
+ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
+ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
+sleep 1 # wait so that docker run has not exited before docker attach
+EOF
+)
+id=$(docker run -d $IMAGE /bin/bash -e -c "$COMMAND")
+#enable logs
+docker attach $id
+test $(docker wait $id) -eq 0
+docker commit $id $IMAGE > /dev/null
