@@ -3,29 +3,20 @@ set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 APP="$1"; IMAGE="dokku/$APP"
 echo "-----> Installing phantomjs ..."
 COMMAND=$(cat <<EOF
-add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
-apt-get -y update
-apt-get -y install gcc-4.9 g++-4.9 cpp-4.9 build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev libhyphen0 libhyphen-dev libwebp5 libwebp-dev
+#apt-get -y update
+#apt-get -y install build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
 
-cd /usr/bin
-rm gcc g++ cpp
-ln -s gcc-4.9 gcc
-ln -s g++-4.9 g++
-ln -s cpp-4.9 cpp
-cd /tmp
 #wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
-wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.5.0-beta-linux-ubuntu-trusty-x86_64.tar.gz
 #tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
-tar zxvf phantomjs-2.5.0-beta-linux-ubuntu-trusty-x86_64.tar.gz
 #mv phantomjs-2.1.1-linux-x86_64 /usr/local/share/phantomjs-2.1.1-linux-x86_64
-mv phantomjs-2.5.0-beta-ubuntu-trusty /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty
 #ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64 /usr/local/share/phantomjs
-ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty /usr/local/share/phantomjs
 #ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
-ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty/bin/phantomjs /usr/local/bin/phantomjs
 #ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
-ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty/bin/phantomjs /usr/bin/phantomjs
+
+ln -sf /app/.meteor/heroku_build/app/programs/server/npm/node_modules/meteor/kadira_flow-router-ssr/node_modules/phantomjs /usr/local/share/phantomjs
+ln -sf /app/.meteor/heroku_build/app/programs/server/npm/node_modules/meteor/kadira_flow-router-ssr/node_modules/bin/phantomjs /usr/local/bin/phantomjs
+ln -sf /app/.meteor/heroku_build/app/programs/server/npm/node_modules/meteor/kadira_flow-router-ssr/node_modules/bin/phantomjs /usr/bin/phantomjs
 
 sleep 1 # wait so that docker run has not exited before docker attach
 EOF
