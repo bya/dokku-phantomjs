@@ -15,9 +15,9 @@ mv phantomjs-2.5.0-beta-ubuntu-trusty /usr/local/share/phantomjs-2.5.0-beta-ubun
 #ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64 /usr/local/share/phantomjs
 ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty /usr/local/share/phantomjs
 #ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
-ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty /usr/local/bin/phantomjs
+ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty/bin/phantomjs /usr/local/bin/phantomjs
 #ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
-ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty /usr/bin/phantomjs
+ln -sf /usr/local/share/phantomjs-2.5.0-beta-ubuntu-trusty/bin/phantomjs /usr/bin/phantomjs
 
 sleep 1 # wait so that docker run has not exited before docker attach
 EOF
