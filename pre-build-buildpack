@@ -3,9 +3,9 @@ set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 APP="$1"; IMAGE="dokku/$APP"
 echo "-----> Installing phantomjs ..."
 COMMAND=$(cat <<EOF
-add-apt-repository -y ppa:ubuntu-toolchain-r/test 
-apt-get -y update
-apt-get -y install libstdc++6 build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev libxslt1.1 libhyphen0 libwebp5 
+#add-apt-repository -y ppa:ubuntu-toolchain-r/test 
+#apt-get -y update
+#apt-get -y install libstdc++6 build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev libxslt1.1 libhyphen0 libwebp5 
 wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.5.0-beta-linux-ubuntu-trusty-x86_64.tar.gz
 tar zxvf phantomjs-2.5.0-beta-linux-ubuntu-trusty-x86_64.tar.gz
 mv phantomjs-2.5.0-beta-ubuntu-trusty /usr/local/share/phantomjs-2.5.0-beta
