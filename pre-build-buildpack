@@ -5,7 +5,7 @@ echo "-----> Installing phantomjs ..."
 COMMAND=$(cat <<EOF
 
 #2.5-beta
-add-apt-repository -y ppa:ubuntu-toolchain-r/test
+add-apt-repository -y ppa:ubuntu-toolchain/test
 apt-get -y update
 apt-get -y install libstdc++6 build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev libxslt1.1 libhyphen0 libwebp5 
 wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.5.0-beta-linux-ubuntu-trusty-x86_64.tar.gz
